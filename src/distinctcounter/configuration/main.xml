@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <source_table>
+        <name_format>active_users</name_format>
+        <distinct_value_field>user_id</distinct_value_field>
+        <date_field>short_date</date_field>
+        <split_fields>
+            <split_field>
+                <name>split_field_1</name>
+                <source_query>SELECT id FROM d_split_field_1</source_query>
+            </split_field>
+            <split_field>
+                <name>split_field_2</name>
+                <source_query>SELECT id FROM d_split_field_2</source_query>
+            </split_field>
+        </split_fields>
+    </source_table>   
+    <destination_table>active_users_results</destination_table>
+</config>
+<!--
+<config>
+    <source_table>
+        <type>merge</type>
+        <name_format>active_users__yyyy_MM_dd</name_format>
+        <distinct_value_field>user_id</distinct_value_field>
+        <split_fields>
+           <split_field>
+                <name>split_field_1</name>
+                <source_query>SELECT id FROM d_split_field_1</source_query>
+            </split_field>
+            <split_field>
+                <name>split_field_2</name>
+                <source_query>SELECT id FROM d_split_field_2</source_query>
+            </split_field>
+        </split_fields>
+    </source_table>   
+</config>
+-->

@@ -1,0 +1,43 @@
+###############
+# 1 mil rows
+###############
+
+Time to load to redis:41.63
+Time to get key from redis:0.473
+Time to calc DU:0.021
+Distinct Users:33364
+
+=================================
+
+Time to load to redis:42.364
+Time to get key from redis:0.437
+Time to calc DU:0.017
+Distinct Users:33932
+
+=================================
+
+Time to merge bitsets:0.228
+Distinct Users:64823
+
+###############
+# 2 mil rows
+###############
+
+Time to load to redis:83.775
+Time to get key from redis:0.47
+Time to calc DU:0.023
+Distinct Users:59216
+
+=================================
+
+Time to load to redis:83.282
+Time to get key from redis:0.416
+Time to calc DU:0.018
+Distinct Users:62215
+
+=================================
+
+Time to merge bitsets:0.207
+Distinct Users:114340
+
+
