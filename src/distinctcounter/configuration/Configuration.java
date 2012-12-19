@@ -7,8 +7,10 @@ package distinctcounter.configuration;
 import distinctcounter.Db.ConnectionSettings;
 import distinctcounter.Db.Db;
 import distinctcounter.Loader.FileMap;
+import distinctcounter.Main;
 import distinctcounter.Tools.InstanceDetails;
 import distinctcounter.Tools.SplitFieldManager;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -52,7 +54,12 @@ public class Configuration {
             return;
         }
         
-        Reader fileReader = new FileReader(Configuration.class.getResource(PROP_FILE).toString().replace("file:", ""));        
+        File path = new File("/../configuration/"+PROP_FILE);
+        
+       // String p1= Configuration.class.getResource(PROP_FILE).toString().replace("file:", "");
+        
+        Reader fileReader = new FileReader(path);        
+        //Reader fileReader = new FileReader(Configuration.class.getResource(PROP_FILE).toString().replace("file:", ""));        
         PROPS_RO.load(fileReader);
     }
     
