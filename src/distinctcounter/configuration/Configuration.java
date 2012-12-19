@@ -7,6 +7,7 @@ package distinctcounter.configuration;
 import distinctcounter.Db.ConnectionSettings;
 import distinctcounter.Db.Db;
 import distinctcounter.Loader.FileMap;
+import distinctcounter.Loader.ResultsLoader;
 import distinctcounter.Main;
 import distinctcounter.Tools.InstanceDetails;
 import distinctcounter.Tools.SplitFieldManager;
@@ -26,8 +27,15 @@ public class Configuration {
     public final static ReadOnlyProperties PROPS_RO = new ReadOnlyProperties();
     public final static XmlReader XML_RO = new XmlReader();
     
+    private static String PATH_TO_CONFIG;
+    
     private static void preInit(){
         InstanceDetails.startInstance();
+        String path = Configuration.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        if(path.endsWith(".jar")){
+           path = path.replaceFirst("/[a-zA-Z0-9]+\\.jar", "/");
+        }
+        PATH_TO_CONFIG = path;
     }
     
     private static void postInit() throws Exception{
@@ -40,6 +48,8 @@ public class Configuration {
         
         FileMap.init(PROPS_RO.getProperty("binary_files_path"));
         SplitFieldManager.load();
+        
+        ResultsLoader.createTable();
     }
     
     public static void load() throws Exception{
@@ -49,16 +59,17 @@ public class Configuration {
         postInit();
     }
     
+    public static String getPathToConfig(){
+        return PATH_TO_CONFIG;
+    }
+    
     private static void loadProperties() throws IOException{
         if(!PROPS_RO.isEmpty()){
             return;
         }
         
-        File path = new File("/../configuration/"+PROP_FILE);
         
-       // String p1= Configuration.class.getResource(PROP_FILE).toString().replace("file:", "");
-        
-        Reader fileReader = new FileReader(path);        
+        Reader fileReader = new FileReader(PATH_TO_CONFIG+"configuration/"+PROP_FILE);        
         //Reader fileReader = new FileReader(Configuration.class.getResource(PROP_FILE).toString().replace("file:", ""));        
         PROPS_RO.load(fileReader);
     }

@@ -26,7 +26,7 @@ public class XmlReader {
             return;
         }
         
-        File xml = new File(Configuration.class.getResource(Configuration.XML_FILE).toString().replace("file:", ""));
+        File xml = new File(Configuration.getPathToConfig()+"configuration/"+Configuration.XML_FILE);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         XML = dBuilder.parse(xml);

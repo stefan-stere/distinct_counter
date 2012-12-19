@@ -35,7 +35,6 @@ public class Main {
 	public static void main(String[] args) {
 		try {	
             Configuration.load();
-            String t = Configuration.XML_RO.getElementByTagName("caca");
 
 			int nbArg = args.length;
 			String actionName = null;

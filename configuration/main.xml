@@ -9,10 +9,6 @@
                 <name>split_field_1</name>
                 <source_query>SELECT id FROM d_split_field_1</source_query>
             </split_field>
-            <split_field>
-                <name>split_field_2</name>
-                <source_query>SELECT id FROM d_split_field_2</source_query>
-            </split_field>
         </split_fields>
     </source_table>   
     <destination_table>active_users_results</destination_table>

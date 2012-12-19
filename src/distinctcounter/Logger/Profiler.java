@@ -65,7 +65,7 @@ public class Profiler {
 				}
 				
 				String insertSql = ""
-					+ "INSERT INTO "+DB_NAME+"."+TABLE_NAME+""
+					+ "INSERT DELAYED INTO "+DB_NAME+"."+TABLE_NAME+""
 					+ "(instance_id,name,exec_time,calls)"
 					+ "VALUES"
 					+ "("+InstanceDetails.getInstanceId()+",'"+report+"',"+REPORTS_RES.get(report) +","+REPORTS_CALLS.get(report) +")";

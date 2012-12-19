@@ -24,7 +24,7 @@ public class Message {
 		msg = msg.replace("'", "\\'");
 		try {
 			String insertSql = ""
-				+ "INSERT INTO "+DB_NAME+"."+TABLE_NAME+""
+				+ "INSERT DELAYED INTO "+DB_NAME+"."+TABLE_NAME+""
 				+ "(instance_id,msg)"
 				+ "VALUES"
 				+ "("+InstanceDetails.getInstanceId()+",'"+msg+"')";		
