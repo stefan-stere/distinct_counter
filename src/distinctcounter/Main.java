@@ -68,7 +68,7 @@ public class Main {
 			PrintWriter pw = new PrintWriter(sw);
 			e.printStackTrace(pw);
 			Message.log(sw.toString());
-			System.exit(1);
+			System.exit(1); 
 		}
 	}
 	
