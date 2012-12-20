@@ -26,15 +26,12 @@ public class ResultsLoader {
         COLUMNS.put("short_date","date");
         COLUMNS.put("xau_type","varchar(32)");
         
-        String splitField1 = Configuration.XML_RO.getElementByTagName("split_field_1");
-        String splitField2 = Configuration.XML_RO.getElementByTagName("split_field_2");
+        String[] splitFields = Configuration.XML_RO.getElementsByTagName("split_field","name");
+        int iMax=splitFields.length;
+        for(int i=0 ; i<iMax; i++){
+            COLUMNS.put(splitFields[i], "int");
+        }
         
-        if(splitField1 != null){
-            COLUMNS.put(splitField1,"int");
-        }
-        if(splitField2 != null){
-            COLUMNS.put(splitField2,"int");
-        }
         
         COLUMNS.put("distinct_values","int");
         

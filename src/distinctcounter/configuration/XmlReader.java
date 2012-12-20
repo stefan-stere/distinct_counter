@@ -33,18 +33,20 @@ public class XmlReader {
     } 
     
     public String getElementByTagName(String tagName){
+        NodeList nl = XML.getElementsByTagName(tagName);
+        
         if(XML.getElementsByTagName(tagName).item(0) == null){
             return null;
         }
         return ((Element)XML.getElementsByTagName(tagName).item(0)).getTextContent();
     }
     
-    public String[] getElementsByTagName(String tagName){
+    public String[] getElementsByTagName(String tagName, String childTagName){
         NodeList nodes = XML.getElementsByTagName(tagName);
         String[] nodesValues = new String[nodes.getLength()];
         for(int i=0, iMax=nodes.getLength(); i<iMax; i++){
             Element e = (Element)nodes.item(i);
-            nodesValues[i] = e.getTextContent();
+            nodesValues[i] = e.getElementsByTagName(childTagName).item(0).getTextContent();
         }
         
         return nodesValues;
