@@ -41,8 +41,7 @@ public class ActiveUsers extends Abstract{
 			+  " `"+distinctField+"` AS "+ActiveUsers.KEY+" "
 			+ "FROM "+DB_NAME+"."+tableName+" "
 			+ "WHERE 1 "
-            + " AND `"+dateField+"` >= '"+DateFormat.format(mk.getCurrentDate(), "yyyy-MM-dd") +" 00:00:00' "
-            + " AND `"+dateField+"` <= '"+DateFormat.format(mk.getCurrentDate(), "yyyy-MM-dd") +" 23:59:59' "
+            + " AND `"+dateField+"` = '"+DateFormat.format(mk.getCurrentDate(), "yyyy-MM-dd") +"' "
             + sqlCond + " "
 			+ "GROUP BY "+ActiveUsers.KEY+" "
 			+ "ORDER BY NULL";

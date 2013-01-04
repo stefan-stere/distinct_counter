@@ -49,6 +49,14 @@ public class MetricKey {
 		return s;
 	}
     
+	public String toStringSplitFieldsValues(){
+		String values = splitFields.values().toString();
+		values = values.substring(1);
+		values = values.substring(0, values.length());
+		
+		return values;
+	}
+	
     public String toStringSplitFieldsToFile(){
         String keys = splitFields.keySet().toString();
         keys = keys.replace(",", "#");

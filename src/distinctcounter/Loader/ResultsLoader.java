@@ -8,8 +8,7 @@ import distinctcounter.Db.Db;
 import distinctcounter.Tools.DateFormat;
 import distinctcounter.Tools.MetricKey;
 import distinctcounter.configuration.Configuration;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -20,7 +19,7 @@ public class ResultsLoader {
 	private final static String TABLE_NAME = Configuration.XML_RO.getElementByTagName("destination_table");
 	private final static String DB_NAME = Configuration.PROPS_RO.getProperty("server_db");
     
-    private static HashMap<String,String> COLUMNS = new HashMap<>();
+    private static LinkedHashMap<String,String> COLUMNS = new LinkedHashMap<>();
 	
     public static void createTable() throws Exception{
         COLUMNS.put("short_date","date");
@@ -29,7 +28,7 @@ public class ResultsLoader {
         String[] splitFields = Configuration.XML_RO.getElementsByTagName("split_field","name");
         int iMax=splitFields.length;
         for(int i=0 ; i<iMax; i++){
-            COLUMNS.put(splitFields[i], "int");
+            COLUMNS.put(splitFields[i], "int"); 
         }
         
         
@@ -48,10 +47,10 @@ public class ResultsLoader {
     
 	public static void load(MetricKey mk, int result) throws Exception{
 		String insertSql = ""
-				+ "INSERT INTO "+DB_NAME+"."+TABLE_NAME+""
+				+ "INSERT DELAYED INTO "+DB_NAME+"."+TABLE_NAME+""
 				+ "(" + COLUMNS.toString() + ")"
 				+ "VALUES"
-				+ "('"+DateFormat.format(mk.getCurrentDate(), "yyyy-MM-dd")+"',"+mk.toStringSplitFieldsToFile()+",'"+mk.getMetricName()+"',"+result+")";
+				+ "('"+DateFormat.format(mk.getCurrentDate(), "yyyy-MM-dd")+"','"+mk.getMetricName()+"',"+mk.toStringSplitFieldsValues()+","+result+")";
 		Db.getCurrentConnection().exec(insertSql);
 	}
 	
