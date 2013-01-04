@@ -17,7 +17,7 @@ public class LoaderFactory {
 	
 	private static int CURRENT_LOADER = 0;
 	
-	public static void setCurrentLoader(int loaderId) throws Exception{
+	public static synchronized void setCurrentLoader(int loaderId) throws Exception{
 		if(LoaderFactory.CURRENT_LOADER == 0){
 			LoaderFactory.CURRENT_LOADER = loaderId;
 		}else{
@@ -25,11 +25,11 @@ public class LoaderFactory {
 		}		
 	}
 	
-	public static int getCurrentLoader(){
+	public static synchronized int getCurrentLoader(){
 		return LoaderFactory.CURRENT_LOADER;
 	}
 	
-	public static Abstract getLoader(int loaderId, MetricKey mk) throws Exception{		
+	public static synchronized Abstract getLoader(int loaderId, MetricKey mk) throws Exception{		
 		Abstract loader;		
 		switch(loaderId){
 			case LoaderFactory.FILE_LOADER : 

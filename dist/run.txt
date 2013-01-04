@@ -1,2 +1,0 @@
-/home/stefan/jdk1.7.0/bin/java -jar  -Xmx2048m -Xms1024m -XX:MaxPermSize=1024m  /home/stefan/Test/distinct_counter/DistinctCounter.jar load active_users 2013-01-01  2013-01-01 
-

@@ -43,7 +43,7 @@ public class Profiler {
 	
 	public synchronized static void stop(String report){		
 		Long currentTime = System.currentTimeMillis();
-		Long startTime = REPORTS.get(report);
+		Long startTime = REPORTS.containsKey(report) ? REPORTS.get(report) : currentTime;
 		Float prevDiff = REPORTS_RES.containsKey(report) ? REPORTS_RES.get(report) : 0f;
 		Float diff = (float)(currentTime-startTime)/1000 + prevDiff;
 		REPORTS_RES.put(report, diff);

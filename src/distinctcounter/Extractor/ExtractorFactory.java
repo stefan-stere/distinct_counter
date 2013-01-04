@@ -16,7 +16,7 @@ public class ExtractorFactory {
 	
 	private static String CURRENT_EXTRACTOR_NAME = null;
 	
-	public static void setCurrentExtractor(String extractorName){
+	public synchronized static void setCurrentExtractor(String extractorName){
 		ExtractorFactory.init();
 		if(!ExtractorFactory.EXTRACTORS.containsKey(extractorName)){
 			throw new UnsupportedOperationException("Cannot set current extractor because no extractor was found with the name: ["+extractorName+"]");
@@ -24,18 +24,18 @@ public class ExtractorFactory {
 		ExtractorFactory.CURRENT_EXTRACTOR_NAME = extractorName;
 	}
 	
-	public static Abstract getCurrentExtractor(){
+	public synchronized static Abstract getCurrentExtractor(){
 		return ExtractorFactory.EXTRACTORS.get(ExtractorFactory.CURRENT_EXTRACTOR_NAME);
 	}
 	
-	private static void init(){
+	private synchronized static void init(){
 		if (ExtractorFactory.EXTRACTORS == null) {
 			ExtractorFactory.EXTRACTORS = new HashMap<String, Abstract>();
 			ExtractorFactory.EXTRACTORS.put("active_users", new ActiveUsers());
 		}		
 	}
 	
-	public static Abstract getExtractor(String extractorName){
+	public synchronized static Abstract getExtractor(String extractorName){
 		ExtractorFactory.init();		
 		
 		if(!ExtractorFactory.EXTRACTORS.containsKey(extractorName)){

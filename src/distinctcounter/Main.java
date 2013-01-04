@@ -41,7 +41,6 @@ public class Main {
 			String extractorName = null;
 			Date startDate = null;
 			Date endDate = null;
-			int gameReportId = 0;
 			
 			switch(nbArg){
 				case 1 : 
